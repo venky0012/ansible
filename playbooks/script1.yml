@@ -1,0 +1,11 @@
+---
+- name: Test Playbook
+  hosts: win
+
+  tasks:
+  - name: Run shell
+    win_shell: |
+      $ret = Test-Path -Path C:\tmp
+      if ($ret) {
+        Remove-Item -Path C:\tmp -Force
+      }

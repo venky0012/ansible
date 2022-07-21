@@ -1,0 +1,11 @@
+---
+- name: work with service facts
+  hosts: linux1
+
+  tasks:
+    - name: gather service facts
+      service_facts:
+
+    - name: show running services
+      debug:
+        msg: "{{ ansible_facts.services | dict2items  }}"

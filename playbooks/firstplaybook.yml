@@ -1,0 +1,43 @@
+---
+- name: check packages
+  hosts: linux1
+  become: true
+
+  vars: 
+    package: "apache2"
+
+
+  tasks: 
+   - name: gather package facts
+     ansible.builtin.package_facts: 
+        manager: auto
+
+   - name: check {{packege}}    
+     ansible.builtin.debug:
+             msg: "{{package}} {{ansible_facts.packages[package][0].version}} is installed"
+     when: "package in ansible_facts.packages"   
+
+
+   - name: install package if not exist
+     apt:
+        name: apache2
+        state: latest
+     when: "not package in ansible_facts.packages"
+
+   - name: start service
+     service: 
+       name: apache2
+       enabled: true
+       state: started
+
+   - name: check service
+     service_facts:
+     register: service_state
+
+   - debug:
+           var: service_state.ansible_facts.services["{{package}}.service"].state
+
+   - name: copy of wall
+     copy: 
+       src: /etc/ansible/files/web.html
+       dest: /var/www/html/index.html        

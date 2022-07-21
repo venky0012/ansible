@@ -1,0 +1,5 @@
+# testing
+
+- hosts: win
+  roles:
+   - win_softwares 

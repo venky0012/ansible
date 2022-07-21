@@ -1,0 +1,12 @@
+---
+- name: testing win and linux
+  hosts: linux1
+  become: yes
+   
+  tasks: 
+           
+   - name: install apache2
+     apt:
+       name: apache2
+       state: latest
+              

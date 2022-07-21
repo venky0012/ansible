@@ -1,0 +1,17 @@
+---
+- name: check if software installed
+  win_shell: |
+            ((Get-ChildItem "HKLM:Software\Microsoft\Windows\CurrentVersion\Uninstall") |Where-Object { $_."Name" -like "*VLC*" } ).Length -gt 0
+  register: result
+
+- name: install if software n ot installed
+  win_chocolatey:
+    name: vlc
+    state: latest
+  when: not result.stdout_lines[0] |bool
+
+ 
+  
+
+# tasks file for win_softwares
+

@@ -1,0 +1,14 @@
+---
+- name: variable playbook test
+  hosts: localhost
+  
+  vars:
+   var1: venky
+   var2: beeram reddy
+   var3: "{{var1}} {{var2}}"
+
+  tasks: 
+   - name: print out var3
+     debug:
+      msg: "{{var3}}"
+ 

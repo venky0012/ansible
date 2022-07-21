@@ -1,0 +1,10 @@
+---
+ - name: Ansible win_command module example  
+   hosts: win # host group to run the module on
+   gather_facts: no
+
+   tasks: 
+   -  name: run an executable command on a remote Windows system
+      win_chocolatey:
+          name: procexp
+          state: latest  

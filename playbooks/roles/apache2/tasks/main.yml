@@ -1,0 +1,37 @@
+---
+- name: install apache2
+  apt: 
+   name: apache2
+   state: latest
+
+
+- name: apache2 service enable
+  service: 
+    name: apache2
+    state: started
+    enabled: true
+
+
+- name: ensure a folder
+  file: 
+    path: "/var/www/vhosts/{{ ansible_hostname }}"
+    state: directory
+
+
+- name: copy the file
+  copy:
+    src: web.html
+    dest: "/var/www/vhosts/{{ ansible_hostname }}/index.html" 
+     
+
+- name: template vhost file
+  template: 
+    src: vhost.conf.j2
+    dest: /etc/apache2/conf.d/vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart_apache2
+
+      

@@ -1,0 +1,19 @@
+---
+- name: service installation
+  hosts: all
+  become: true
+  become_method: sudo
+
+  tasks: 
+   - name: httpd     
+     apt:
+      name: apache2
+      state: absent
+     register: httpd_results 
+
+   - name: restart service
+     service:
+        name: apache2
+        state: started
+     when: httpd_results.changed
+

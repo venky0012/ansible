@@ -1,0 +1,10 @@
+---
+- name: test url
+  hosts: localhost
+  vars:
+          node: "172.19.59.239"
+
+  tasks: 
+    - name: chet get command
+      uri: 
+        url: "http://{{node}}"      

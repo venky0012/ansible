@@ -1,0 +1,9 @@
+---
+- name: testing on facts
+  hosts: linux1
+  gather_facts: true
+
+  tasks:
+   - name: print ansible facts
+     debug: 
+      msg: "{{ansible_fqdn}} {{ansible_default_ipv4.address}}"

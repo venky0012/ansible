@@ -1,0 +1,22 @@
+---
+- name: conditions testing
+  hosts: localhost
+
+  vars:
+   sol: venky
+
+  tasks:   
+   - name: task on conditions
+     debug:
+      msg: "iam cool {{sol}}"
+
+     when: sol == "venky"
+
+
+   - name: tak on mood
+     debug:
+      msg: "risky {{sol}}"
+
+     when: sol == "rocky"
+     
+

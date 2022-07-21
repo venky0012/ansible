@@ -1,0 +1,9 @@
+---
+- name: template example
+  hosts: localhost
+  become: true
+
+  tasks:
+    - template:
+        src: /home/test2/ansible/venky.j2
+        dest: /home/test2/ansible/ok.cfg
