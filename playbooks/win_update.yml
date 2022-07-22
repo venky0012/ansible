@@ -1,0 +1,5 @@
+---
+- name: win updates
+  hosts: win
+  roles: 
+   - win_updates

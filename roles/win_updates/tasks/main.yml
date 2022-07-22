@@ -1,0 +1,21 @@
+---
+
+# tasks file for win_updates
+
+- name: Checking OS_type of server 
+  win_shell: |
+        $server_os_type =  (Get-WmiObject  -Class Win32_OperatingSystem).Caption
+        $Booted = Get-WmiObject -Class Win32_OperatingSystem
+        $restart_time = $Booted.ConvertToDateTime($Booted.LastBootUpTime)
+        $recent_patches = (get-wmiobject -class win32_quickfixengineering).HotFixID | Select-Object -First 5
+        $patchtime = (get-wmiobject -class win32_quickfixengineering).installedon | Sort-Object -Property installedon -Descending
+        $last_patch  = $patchtime[0]
+        echo $server_os_type
+        echo $restart_time
+        echo $recent_patches
+        echo $last_patch
+  register: result1
+
+- name: output
+  debug:
+          msg: "{{result1}}"  
