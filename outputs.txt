@@ -1,0 +1,114 @@
+Time: 2022-07-23 22:14:09.037336
+File: playbooks/win_update.yml
+
+PLAY [win updates] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [13.126.198.75]
+
+TASK [win_updates : Checking OS_type of server] ********************************
+changed: [13.126.198.75]
+
+TASK [win_updates : output] ****************************************************
+ok: [13.126.198.75] => {
+    "msg": {
+        "changed": true,
+        "cmd": "$server_os_type =  (Get-WmiObject  -Class Win32_OperatingSystem).Caption\n$Booted = Get-WmiObject -Class Win32_OperatingSystem\n$restart_time = $Booted.ConvertToDateTime($Booted.LastBootUpTime)\n$recent_patches = (get-wmiobject -class win32_quickfixengineering).HotFixID | Select-Object -First 5\n$patchtime = (get-wmiobject -class win32_quickfixengineering).installedon | Sort-Object -Property installedon -Descending\n$last_patch  = $patchtime[0]\necho $server_os_type\necho $restart_time\necho $recent_patches\necho $last_patch",
+        "delta": "0:00:09.969213",
+        "end": "2022-07-23 16:43:33.600979",
+        "failed": false,
+        "rc": 0,
+        "start": "2022-07-23 16:43:23.631766",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "Microsoft Windows Server 2019 Datacenter\r\n\r\nTuesday, July 19, 2022 2:40:38 PM\r\nKB5013888\r\nKB4470502\r\nKB4470788\r\nKB4480056\r\nKB4486153\r\nWednesday, April 14, 2021 12:00:00 AM\r\n\r\n\r\n",
+        "stdout_lines": [
+            "Microsoft Windows Server 2019 Datacenter",
+            "",
+            "Tuesday, July 19, 2022 2:40:38 PM",
+            "KB5013888",
+            "KB4470502",
+            "KB4470788",
+            "KB4480056",
+            "KB4486153",
+            "Wednesday, April 14, 2021 12:00:00 AM",
+            "",
+            ""
+        ]
+    }
+}
+
+TASK [win_updates : start update services] *************************************
+changed: [13.126.198.75]
+
+TASK [win_updates : install patches] *******************************************
+ok: [13.126.198.75]
+
+TASK [win_updates : Wait for system to become reachable] ***********************
+ok: [13.126.198.75]
+
+TASK [win_updates : stop update services] **************************************
+changed: [13.126.198.75]
+
+PLAY RECAP *********************************************************************
+13.126.198.75              : ok=7    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+Time: 2022-07-23 22:18:11.731801
+File: playbooks/win_update.yml
+
+PLAY [win updates] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [13.126.198.75]
+
+TASK [win_updates : Checking OS_type of server] ********************************
+changed: [13.126.198.75]
+
+TASK [win_updates : output] ****************************************************
+ok: [13.126.198.75] => {
+    "msg": {
+        "changed": true,
+        "cmd": "$server_os_type =  (Get-WmiObject  -Class Win32_OperatingSystem).Caption\n$Booted = Get-WmiObject -Class Win32_OperatingSystem\n$restart_time = $Booted.ConvertToDateTime($Booted.LastBootUpTime)\n$recent_patches = (get-wmiobject -class win32_quickfixengineering).HotFixID | Select-Object -First 5\n$patchtime = (get-wmiobject -class win32_quickfixengineering).installedon | Sort-Object -Property installedon -Descending\n$last_patch  = $patchtime[0]\necho $server_os_type\necho $restart_time\necho $recent_patches\necho $last_patch",
+        "delta": "0:00:10.950949",
+        "end": "2022-07-23 16:47:27.754487",
+        "failed": false,
+        "rc": 0,
+        "start": "2022-07-23 16:47:16.803538",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "Microsoft Windows Server 2019 Datacenter\r\n\r\nTuesday, July 19, 2022 2:40:38 PM\r\nKB5013888\r\nKB4470502\r\nKB4470788\r\nKB4480056\r\nKB4486153\r\nWednesday, April 14, 2021 12:00:00 AM\r\n\r\n\r\n",
+        "stdout_lines": [
+            "Microsoft Windows Server 2019 Datacenter",
+            "",
+            "Tuesday, July 19, 2022 2:40:38 PM",
+            "KB5013888",
+            "KB4470502",
+            "KB4470788",
+            "KB4480056",
+            "KB4486153",
+            "Wednesday, April 14, 2021 12:00:00 AM",
+            "",
+            ""
+        ]
+    }
+}
+
+TASK [win_updates : start update services] *************************************
+changed: [13.126.198.75]
+
+TASK [win_updates : install patches] *******************************************
+ok: [13.126.198.75]
+
+TASK [win_updates : Wait for system to become reachable] ***********************
+ok: [13.126.198.75]
+
+TASK [win_updates : stop update services] **************************************
+changed: [13.126.198.75]
+
+PLAY RECAP *********************************************************************
+13.126.198.75              : ok=7    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+
+..............................................................................
