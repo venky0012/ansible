@@ -112,3 +112,176 @@ PLAY RECAP *********************************************************************
 
 
 ..............................................................................
+
+Time: 2022-07-23 22:48:45.720421
+File: playbooks/service.yml
+
+PLAY [service installation] ****************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [13.126.198.75]: FAILED! => {"msg": "The powershell shell family is incompatible with the sudo become plugin"}
+fatal: [3.109.2.149]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Warning: Permanently added '3.109.2.149' (ECDSA) to the list of known hosts.\r\nroot@3.109.2.149: Permission denied (publickey,password).", "unreachable": true}
+fatal: [43.204.236.184]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 43.204.236.184 port 22: Connection timed out", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+13.126.198.75              : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+3.109.2.149                : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+43.204.236.184             : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+
+..............................................................................
+
+Time: 2022-07-23 22:53:10.540961
+File: playbooks/service.yml
+
+PLAY [service installation] ****************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [13.126.198.75]: FAILED! => {"msg": "The powershell shell family is incompatible with the sudo become plugin"}
+ok: [3.109.2.149]
+fatal: [43.204.236.184]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 43.204.236.184 port 22: Connection timed out", "unreachable": true}
+
+TASK [httpd] *******************************************************************
+changed: [3.109.2.149]
+
+TASK [restart service] *********************************************************
+fatal: [3.109.2.149]: FAILED! => {"changed": false, "msg": "Unable to start service apache2: Failed to start apache2.service: Unit apache2.service is masked.\n"}
+
+PLAY RECAP *********************************************************************
+13.126.198.75              : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+3.109.2.149                : ok=2    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+43.204.236.184             : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+
+..............................................................................
+
+Time: 2022-07-23 23:05:10.752287
+File: playbooks/service.yml
+
+PLAY [service installation] ****************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [13.126.198.75]: FAILED! => {"msg": "The powershell shell family is incompatible with the sudo become plugin"}
+ok: [3.109.2.149]
+fatal: [43.204.236.184]: FAILED! => {"msg": "failed to resolve remote temporary directory from ansible-tmp-1658597705.830526-86230-215318137802096: `( umask 77 && mkdir -p \"` echo ~/.ansible/tmp `\"&& mkdir \"` echo ~/.ansible/tmp/ansible-tmp-1658597705.830526-86230-215318137802096 `\" && echo ansible-tmp-1658597705.830526-86230-215318137802096=\"` echo ~/.ansible/tmp/ansible-tmp-1658597705.830526-86230-215318137802096 `\" )` returned empty string"}
+
+TASK [httpd] *******************************************************************
+ok: [3.109.2.149]
+
+TASK [restart service] *********************************************************
+skipping: [3.109.2.149]
+
+PLAY RECAP *********************************************************************
+13.126.198.75              : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+3.109.2.149                : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+43.204.236.184             : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+
+..............................................................................
+
+
+
+Time: 2022-07-23 23:09:11.579349
+File: playbooks/conditios.yml
+
+PLAY [conditions testing] ******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [task on conditions] ******************************************************
+ok: [localhost] => {
+    "msg": "iam cool venky"
+}
+
+TASK [tak on mood] *************************************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+
+
+..............................................................................
+
+Time: 2022-07-23 23:11:00.353507
+File: playbooks/firstplaybook.yml
+
+PLAY [check packages] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [43.204.236.184]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 43.204.236.184 port 22: Connection timed out", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+43.204.236.184             : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+
+..............................................................................
+
+Time: 2022-07-23 23:25:54.082455
+File: playbooks/service.yml
+
+PLAY [service installation] ****************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [13.126.198.75]: FAILED! => {"msg": "The powershell shell family is incompatible with the sudo become plugin"}
+ok: [3.109.2.149]
+fatal: [43.204.236.184]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 43.204.236.184 port 22: Connection timed out", "unreachable": true}
+
+TASK [httpd] *******************************************************************
+ok: [3.109.2.149]
+
+TASK [restart service] *********************************************************
+skipping: [3.109.2.149]
+
+PLAY RECAP *********************************************************************
+13.126.198.75              : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+3.109.2.149                : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+43.204.236.184             : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+
+..............................................................................
+
+Time: 2022-07-23 23:27:38.438299
+File: playbooks/script1.yml
+
+PLAY [Test Playbook] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [13.126.198.75]
+
+TASK [Run shell] ***************************************************************
+changed: [13.126.198.75]
+
+PLAY RECAP *********************************************************************
+13.126.198.75              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+
+..............................................................................
+
+Time: 2022-07-23 23:28:44.858318
+File: playbooks/testing.yml
+
+PLAY [win] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [13.126.198.75]
+
+TASK [win_softwares : check if software installed] *****************************
+changed: [13.126.198.75]
+
+TASK [win_softwares : install if software n ot installed] **********************
+skipping: [13.126.198.75]
+
+PLAY RECAP *********************************************************************
+13.126.198.75              : ok=2    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+
+
+..............................................................................
