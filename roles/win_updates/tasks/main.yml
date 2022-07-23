@@ -18,4 +18,30 @@
 
 - name: output
   debug:
-          msg: "{{result1}}"  
+          msg: "{{result1}}" 
+ 
+- name: start update services
+  win_service:
+          name: Wuauserv
+          state: started
+          start_mode: auto         
+
+
+- name: install patches
+  win_updates:
+    category_names:       
+      - SecurityUpdates
+      - CriticalUpdates
+      - UpdateRollups
+    reboot: yes      
+
+- name: Wait for system to become reachable
+  wait_for_connection:
+    timeout: 600
+    sleep: 20
+
+- name: stop update services
+  win_service:
+          name: Wuauserv
+          state: stopped
+          start_mode: disabled  
